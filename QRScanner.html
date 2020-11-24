@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!------------------------------------------------------------------------- Importing Files --------------------------------------------------------->
+    <link href="CSS_Files/navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS_Files/QRstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--- Title Bar --->
+    <title>QR Scanner</title>
+
+</head>
+
+<body>
+    <!------------------------------------------------------------------------- Menu bar Top ------------------------------------------------------------------->
+	<nav id="topNavigationBar" class="navbar navbar-dark bg-dark">
+		<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menuNavBars"
+			aria-controls="menuNavBars" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fa fa-bars" style="color:#596C7A"></i>
+		</button>
+
+
+
+		<!---------------------- Insert your html title (all caps) in between the below p tag ---------------------------------------------------->
+		<span id="currentPage" style="color:white;">FAQ</span>
+		<a href="Notification.html" class="notification" id="badgeNumber">
+			<i class="fa fa-bell-o" onclick="onNotiClick()" style="color:#596C7A;font-size: 1.5em;" id="bell"></i>
+		</a>
+		<div class="navbar-collapse collapse" id="menuNavBars">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<!---------------------- Insert your home.html over at href --------------------------------------------------------------------------->
+					<a class="nav-link" href="index.html" onclick="homeTitle()">HOME<span
+							class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your walk in / check-in .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="QRScanner.html" onclick="walkTitle()">WALK IN / CHECK-IN </a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" id="walkHelp" onclick="walkHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup -->
+					<div id="walkModal" class="modal">
+	
+						<!-- Walk in / Check in modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>Walk in / Check-in info</h6>
+							<p>Walk in if you do not make any prior appointment</p>
+							<p>Check in if you have made an appointment and are ready for the appointment now</p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your view Queue .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="ListQueue.html" onclick="viewTitle()">VIEW QUEUE</a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" onclick="viewHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup -->
+					<div id="viewModal" class="modal">
+	
+						<!-- Queue modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>View Queue info</h6>
+							<p>Your queue information will only be displayed on the current day of your appointment</p>
+							<p>Queue information would include the <b>estimated waiting time</b> and the <b>number of
+									people in front of your queue</b></p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your appointment .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="AppointmentPurpose.html" onclick="apptTitle()">APPOINTMENT</a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" onclick="apptHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup -->
+					<div id="apptModal" class="modal">
+	
+						<!-- Appointment modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>Appointment info</h6>
+							<p>Book an appointment for your consultation</p>
+							<p>Select your desired <b>date</b> and your desired available <b>time slot</b></p>
+							<p>You are allowed to <b>edit</b> and <b>delete</b> your appointment at this page</p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your faq .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="FAQ.html" onclick="faqTitle()">FAQ</a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" onclick="faqHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup-->
+					<div id="faqModal" class="modal">
+	
+						<!-- FAQ Modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>FAQ info</h6>
+							<p>This page contain some of the commonly asked questions</p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<!---------------------- Insert your appointment .html over at href, just link it to singpass login page ---------------------------------------------------->
+					<a class="nav-link" href="#">SIGN OUT</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<script>
+		function homeTitle() {
+			document.getElementById("currentPage").innerHTML = "HOME";
+		}
+		function walkTitle() {
+			document.getElementById("currentPage").innerHTML = "WALK IN / CHECK-IN";
+		}
+		function viewTitle() {
+			document.getElementById("currentPage").innerHTML = "VIEW QUEUE";
+		}
+		function apptTitle() {
+			document.getElementById("currentPage").innerHTML = "APPOINTMENT";
+		}
+		function faqTitle() {
+			document.getElementById("currentPage").innerHTML = "FAQ";
+		}
+		function notiTitle() {
+			document.getElementById("currentPage").innerHTML = "NOTIFICATION";
+		}
+		function walkHelp() {
+			var modal = document.getElementById("walkModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+		function viewHelp() {
+			var modal = document.getElementById("viewModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+		function apptHelp() {
+			var modal = document.getElementById("apptModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+		function faqHelp() {
+			var modal = document.getElementById("faqModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+
+	</script>
+	<!------------------------------------------------------------------------- End of my top menu bar ------------------------------------------------------------------------------------------------------------------>
+    <!-- Start of QR Code Scanner Page -->
+    <main class="wrapper" id='test'>
+
+        <section class="container text-center" id="demo-content">
+            <h2 class="title col text-center">Scan QR Code</h2>
+
+            <div class="text-center">
+                <div class="scan-viewport">
+                    <div class="scan-indicator"></div>
+                    <div class="scan-container">
+                        <video id="video" width="300" height="300"></video>
+                        <div class="corner left-top"></div>
+                        <div class="corner left-bottom"></div>
+                        <div class="corner right-top"></div>
+                        <div class="corner right-bottom"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container text-center">
+                <p class="title col text-center">Hold the code within border to focus</p>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-outline-dark" type="button" id="startButton" onclick="getQRCode()" style="display: none">Start</button>
+                <button class="btn btn-outline-dark" type="button" id="resetButton" style="display: none">Reset</button>
+            </div>
+
+            <div class="text-center" id="sourceSelectPanel" style="visibility: hidden; display:none">
+                <label for="sourceSelect"></label>
+                <select class="form-control-sm" id="sourceSelect" style="max-width:400px">
+                </select>
+            </div>
+
+            <div class="col text-center" style="visibility: hidden; display: none">
+                <label for="decoding-style"></label>
+                <select class="form-control-sm" id="decoding-style" size="0.4" type="hidden">
+                    <option value="continuously" type="hidden">Decode Continuously</option>
+                </select>
+            </div>
+
+            <pre><code id="result" style="display: none"></code></pre>
+
+            <div class="mt-3">
+                <a href="QRManualEntry.html" class="text-decoration-none">Manual Entry</a>
+            </div>
+
+            <div class="mt-3 alert alert-success alert-dismissible" style="display: none" id="alertalert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> QR Scan Completed.
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+    <script type="text/javascript">
+
+        const alertalert = document.getElementById('alertalert')
+        function decodeContinuously(codeReader, selectedDeviceId) {
+            codeReader.decodeFromInputVideoDeviceContinuously(selectedDeviceId, 'video', (result, err) => {
+                if (result) {
+                    // properly decoded qr code
+                    console.log('Found QR code!', result)
+                    document.getElementById('result').textContent = result.text
+                    alertalert.style.display = 'block'
+
+                    window.setTimeout(function () {
+                        window.location.href = "QRManualRedirect.html";
+                    }, 1500); // redirects in 1.5 seonds
+                }
+
+                if (err) {
+                    // As long as this error belongs into one of the following categories
+                    // the code reader is going to continue as excepted. Any other error
+                    // will stop the decoding loop.
+                    //
+                    // Excepted Exceptions:
+                    //
+                    //  - NotFoundException
+                    //  - ChecksumException
+                    //  - FormatException
+
+                    if (err instanceof ZXing.NotFoundException) {
+                        console.log('No QR code found.')
+                    }
+
+                    if (err instanceof ZXing.ChecksumException) {
+                        console.log('A code was found, but it\'s read value was not valid.')
+                    }
+
+                    if (err instanceof ZXing.FormatException) {
+                        console.log('A code was found, but it was in a invalid format.')
+                    }
+                }
+            })
+        }
+
+
+        function getQRCode() {
+            const alertalert = document.getElementById('alertalert')
+            function decodeContinuously(codeReader, selectedDeviceId) {
+                codeReader.decodeFromInputVideoDeviceContinuously(undefined, 'video', (result, err) => {
+                    if (result) {
+                        // properly decoded qr code
+                        console.log('Found QR code!', result)
+                        document.getElementById('result').textContent = result.text
+                        alertalert.style.display = 'block'
+
+                        window.setTimeout(function () {
+                            window.location.href = "QRManualRedirect.html";
+                        }, 1500); // redirects in 1.5 seonds
+                    }
+
+                    if (err) {
+                        // As long as this error belongs into one of the following categories
+                        // the code reader is going to continue as excepted. Any other error
+                        // will stop the decoding loop.
+                        //
+                        // Excepted Exceptions:
+                        //
+                        //  - NotFoundException
+                        //  - ChecksumException
+                        //  - FormatException
+
+                        if (err instanceof ZXing.NotFoundException) {
+                            console.log('No QR code found.')
+                        }
+
+                        if (err instanceof ZXing.ChecksumException) {
+                            console.log('A code was found, but it\'s read value was not valid.')
+                        }
+
+                        if (err instanceof ZXing.FormatException) {
+                            console.log('A code was found, but it was in a invalid format.')
+                        }
+                    }
+                })
+            }
+
+
+            let selectedDeviceId;
+            const codeReader = new ZXing.BrowserQRCodeReader()
+            console.log('ZXing code reader initialized')
+
+            codeReader.getVideoInputDevices()
+                .then((videoInputDevices) => {
+                    const sourceSelect = document.getElementById('sourceSelect')
+                    selectedDeviceId = videoInputDevices[1].deviceId // videoInputDevices[1].deviceID = Rear Camera
+                    if (videoInputDevices.length >= 1) {
+                        videoInputDevices.forEach((element) => {
+                            const sourceOption = document.createElement('option')
+                            sourceOption.text = element.label
+                            sourceOption.value = element.deviceId
+                            sourceSelect.appendChild(sourceOption)
+                        })
+
+                        sourceSelect.onchange = () => {
+                            selectedDeviceId = sourceSelect.value;
+                        };
+
+                        const sourceSelectPanel = document.getElementById('sourceSelectPanel')
+                        sourceSelectPanel.style.display = 'block'
+                    }
+
+                        const decodingStyle = document.getElementById('decoding-style').value;
+
+                        if (decodingStyle == "continuously") {
+                            decodeContinuously(codeReader, selectedDeviceId);
+                        }
+
+                        console.log(`Started decode from camera with id ${selectedDeviceId}`)
+
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+
+        }
+
+        getQRCode()
+    </script>
+
+    <script>
+        organisation = "ABC Medical Center" // hardcode to show organisation
+        localStorage.setItem("orgResult", organisation)
+    </script>
+
+<!------------------------------------------------------------------------- Menu bar Bottom ----------------------------------------------------------------->
+<nav id="bottomNavigationBar" class="navbar navbar-dark bg-dark">
+	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menuNavBars"
+		aria-controls="menuNavBars" aria-expanded="false" aria-label="Toggle navigation">
+		<i class="fa fa-bars" style="color:#596C7A"></i>
+	</button>
+	<!---------------------- Insert your html title (all caps) in between the below p tag ---------------------------------------------------->
+	<span id="currentPage" style="color:white;">QR SCANNER</span>
+	<a href="Notification.html" class="notification" id="badgeNumber">
+		<i class="fa fa-bell-o" onclick="onNotiClick()" style="color:#596C7A;font-size: 1.5em;" id="bell"></i>
+	</a>
+	<div class="navbar-collapse collapse" id="menuNavBars">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<!---------------------- Insert your home.html over at href --------------------------------------------------------------------------->
+				<a class="nav-link" href="index.html" onclick="homeTitle()">HOME<span
+						class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your walk in / check-in .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="QRScanner.html" onclick="walkTitle()">WALK IN / CHECK-IN </a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" id="walkHelp" onclick="walkHelp()"
+							style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="walkModal02" class="modal">
+
+					<!-- Walk in / Check in modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>Walk in / Check-in info</h6>
+						<p>Walk in if you do not make any prior appointment</p>
+						<p>Check in if you have made an appointment and are ready for the appointment now</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your view Queue .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="ListQueue.html" onclick="viewTitle()">VIEW QUEUE</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="viewHelp()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="viewModal02" class="modal">
+
+					<!-- Queue modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>View Queue info</h6>
+						<p>Your queue information will only be displayed on the current day of your appointment</p>
+						<p>Queue information would include the <b>estimated waiting time</b> and the <b>number of
+								people in front of your queue</b></p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your appointment .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="AppointmentPurpose.html" onclick="apptTitle()">APPOINTMENT</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="apptHelp()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="apptModal02" class="modal">
+
+					<!-- Appointment modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>Appointment info</h6>
+						<p>Book an appointment for your consultation</p>
+						<p>Select your desired <b>date</b> and your desired available <b>time slot</b></p>
+						<p>You are allowed to <b>edit</b> and <b>delete</b> your appointment at this page</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your faq .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="FAQ.html" onclick="faqTitle()">FAQ</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="faqHelp()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup-->
+				<div id="faqModal02" class="modal">
+
+					<!-- FAQ Modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>FAQ info</h6>
+						<p>This page contain some of the commonly asked questions</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<!---------------------- Insert your appointment .html over at href, just link it to singpass login page ---------------------------------------------------->
+				<a class="nav-link" href="#">SIGN OUT</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<script>
+	function walkHelp() {
+		var modal = document.getElementById("walkModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function viewHelp() {
+		var modal = document.getElementById("viewModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function apptHelp() {
+		var modal = document.getElementById("apptModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function faqHelp() {
+		var modal = document.getElementById("faqModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+
+</script>
+<!------------------------------------------------------------------------- End of my bottom menu bar ------------------------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------- Placed at the end of the document so the pages load faster -------------------------------------------------------------->
+    <script src="JS_Files/Experiment.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src='https://webqr.com/llqrcode.js'></script>
+    <script src="JS_Files/notiBadgeNumber.js"></script>
+    <div id="UMS_TOOLTIP"
+        style="position: absolute; cursor: pointer; z-index: 2147483647; background: transparent; top: -100000px; left: -100000px;">
+    </div>
+</body>
+
+</html>

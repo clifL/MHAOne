@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!------------------------------------------------------------------------- Importing Files ------------------------------------------------------>
+		<link href="CSS_Files/navbar.css" rel="stylesheet">
+		<link href="CSS_Files/FAQ.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		<!------------------------------------------------------------------------- Menu bar Top ------------------------------------------------------------------->
+	<nav id="topNavigationBar" class="navbar navbar-dark bg-dark">
+		<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menuNavBars"
+			aria-controls="menuNavBars" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fa fa-bars" style="color:#596C7A"></i>
+		</button>
+
+
+
+		<!---------------------- Insert your html title (all caps) in between the below p tag ---------------------------------------------------->
+		<span id="currentPage" style="color:white;">FAQ</span>
+		<a href="Notification.html" class="notification" id="badgeNumber">
+			<i class="fa fa-bell-o" onclick="onNotiClick()" style="color:#596C7A;font-size: 1.5em;" id="bell"></i>
+		</a>
+		<div class="navbar-collapse collapse" id="menuNavBars">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<!---------------------- Insert your home.html over at href --------------------------------------------------------------------------->
+					<a class="nav-link" href="index.html" onclick="homeTitle()">HOME<span
+							class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your walk in / check-in .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="QRScanner.html" onclick="walkTitle()">WALK IN / CHECK-IN </a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" id="walkHelp" onclick="walkHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup -->
+					<div id="walkModal" class="modal">
+	
+						<!-- Walk in / Check in modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>Walk in / Check-in info</h6>
+							<p>Walk in if you do not make any prior appointment</p>
+							<p>Check in if you have made an appointment and are ready for the appointment now</p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your view Queue .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="ListQueue.html" onclick="viewTitle()">VIEW QUEUE</a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" onclick="viewHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup -->
+					<div id="viewModal" class="modal">
+	
+						<!-- Queue modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>View Queue info</h6>
+							<p>Your queue information will only be displayed on the current day of your appointment</p>
+							<p>Queue information would include the <b>estimated waiting time</b> and the <b>number of
+									people in front of your queue</b></p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your appointment .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="AppointmentPurpose.html" onclick="apptTitle()">APPOINTMENT</a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" onclick="apptHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup -->
+					<div id="apptModal" class="modal">
+	
+						<!-- Appointment modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>Appointment info</h6>
+							<p>Book an appointment for your consultation</p>
+							<p>Select your desired <b>date</b> and your desired available <b>time slot</b></p>
+							<p>You are allowed to <b>edit</b> and <b>delete</b> your appointment at this page</p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<div class="row">
+						<div class="col-10">
+							<!---------------------- Insert your faq .html over at href ---------------------------------------------------->
+							<a class="nav-link" href="FAQ.html" onclick="faqTitle()">FAQ</a>
+						</div>
+						<div class="col-2">
+							<i class="fa fa-info-circle" onclick="faqHelp()" style="color:white; font-size:1.5em;"></i>
+						</div>
+					</div>
+	
+					<!-- The Modal for popup-->
+					<div id="faqModal" class="modal">
+	
+						<!-- FAQ Modal content, edit if needed -->
+						<div class="modal-content">
+							<h6>FAQ info</h6>
+							<p>This page contain some of the commonly asked questions</p>
+							<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+						</div>
+					</div>
+				</li>
+				<li class="nav-item">
+					<!---------------------- Insert your appointment .html over at href, just link it to singpass login page ---------------------------------------------------->
+					<a class="nav-link" href="#">SIGN OUT</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<script>
+		function homeTitle() {
+			document.getElementById("currentPage").innerHTML = "HOME";
+		}
+		function walkTitle() {
+			document.getElementById("currentPage").innerHTML = "WALK IN / CHECK-IN";
+		}
+		function viewTitle() {
+			document.getElementById("currentPage").innerHTML = "VIEW QUEUE";
+		}
+		function apptTitle() {
+			document.getElementById("currentPage").innerHTML = "APPOINTMENT";
+		}
+		function faqTitle() {
+			document.getElementById("currentPage").innerHTML = "FAQ";
+		}
+		function notiTitle() {
+			document.getElementById("currentPage").innerHTML = "NOTIFICATION";
+		}
+		function walkHelp() {
+			var modal = document.getElementById("walkModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+		function viewHelp() {
+			var modal = document.getElementById("viewModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+		function apptHelp() {
+			var modal = document.getElementById("apptModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+		function faqHelp() {
+			var modal = document.getElementById("faqModal");
+			modal.style.display = "block";
+
+			window.onclick = function (event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		}
+
+	</script>
+	<!------------------------------------------------------------------------- End of my top menu bar ------------------------------------------------------------------------------------------------------------------>
+		<section id="faqs">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2">
+						<h1>Frequently Asked Question (FAQ)</h1>
+						<div class="accordion" id="accordionExample">
+							<!-------------------------------------------------- Question 1 --------------------------------------------------------------->
+							<div class="card mb-2">
+								<div class="card-header" id="HeadingOne">
+									<h2 class="clearfix mb-0">
+										<a class="btn btn-link" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
+											What are the Operating Hours? 
+											<i class="fa fa-angle-down"></i>
+										</a>
+									</h2>
+								</div>
+								<div id="collapseOne" class="collapse" arial-labelledby="HeadingOne" data-parent="#accordionExample">
+									<div class="card-body">
+										Our operating hours are from 9am to 6pm daily.
+									</div>
+								</div>
+							</div>
+							<!-------------------------------------------------- Question 2 --------------------------------------------------------------->
+							<div class="card mb-2">
+								<div class="card-header" id="HeadingTwo">
+									<h2 class="clearfix mb-0">
+										<a class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="true">
+											I have booked an appointment. Do I need to reach the Medical Center early? 
+											<i class="fa fa-angle-down"></i>
+										</a>
+									</h2>
+								</div>
+								<div id="collapseTwo" class="collapse" arial-labelledby="HeadingTwo" data-parent="#accordionExample">
+									<div class="card-body">
+										Yes. You are required to reach the medical center 15 minutes before your appointment to complete the registration
+									</div>
+								</div>
+							</div>
+							<!--------------------------------------------------------------- Question 3 -------------------------------------------------->
+							<div class="card mb-2">
+								<div class="card-header" id="HeadingThree">
+									<h2 class="clearfix mb-0">
+										<a class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="true">
+											How do I make book an appointment in advance? 
+											<i class="fa fa-angle-down"></i>
+										</a>
+									</h2>
+								</div>
+								<div id="collapseThree" class="collapse" arial-labelledby="HeadingThree" data-parent="#accordionExample">
+									<div class="card-body">
+										Hover over to the dropdown menu and click on "Appointment". Choose between consultation and vaccination. Afterwards,
+										you would be redirected to an appointment summary page where the option to "Make New Appointment" is shown. Click on the option
+										and proceed from there.
+										<br>
+									</div>
+								</div>
+							</div>
+							<!--------------------------------------------------------------- Question 4 -------------------------------------------------->
+							<div class="card mb-2">
+								<div class="card-header" id="HeadingFour">
+									<h2 class="clearfix mb-0">
+										<a class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="true">
+											What do I need to know before booking an appointment?
+											<i class="fa fa-angle-down"></i>
+										</a>
+									</h2>
+								</div>
+								<div id="collapseFour" class="collapse" arial-labelledby="HeadingFour" data-parent="#accordionExample">
+									<div class="card-body">
+										You will need to know the pupose of visit, if you are going for vaccination or to consult a doctor.
+									</div>
+								</div>
+							</div>
+							<!------------------------------------------------------------ Question 5 ----------------------------------------------------->
+							<div class="card mb-2">
+								<div class="card-header" id="HeadingFive">
+									<h2 class="clearfix mb-0">
+										<a class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="true">
+											Why is my view queue empty when I select view queue in the menu?
+											<i class="fa fa-angle-down"></i>
+										</a>
+									</h2>
+								</div>
+								<div id="collapseFive" class="collapse" arial-labelledby="HeadingFive" data-parent="#accordionExample">
+									<div class="card-body">
+										You may not have anything in your View Queue cause you have not done your registration. To complete it, please click on the Triple Lines icon located at the top left of the screen and select Walk-in / Check-in.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!------------------------------------------------------------------------- Menu bar Bottom ----------------------------------------------------------------->
+<nav id="bottomNavigationBar" class="navbar navbar-dark bg-dark">
+	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menuNavBars"
+		aria-controls="menuNavBars" aria-expanded="false" aria-label="Toggle navigation">
+		<i class="fa fa-bars" style="color:#596C7A"></i>
+	</button>
+	<!---------------------- Insert your html title (all caps) in between the below p tag ---------------------------------------------------->
+	<span id="currentPage" style="color:white;">FAQ</span>
+	<a href="Notification.html" class="notification" id="badgeNumber">
+		<i class="fa fa-bell-o" onclick="onNotiClick()" style="color:#596C7A;font-size: 1.5em;" id="bell"></i>
+	</a>
+	<div class="navbar-collapse collapse" id="menuNavBars">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<!---------------------- Insert your home.html over at href --------------------------------------------------------------------------->
+				<a class="nav-link" href="index.html" onclick="homeTitle()">HOME<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your walk in / check-in .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="QRScanner.html" onclick="walkTitle()">WALK IN / CHECK-IN </a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" id="walkHelp02" onclick="walkHelp02()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="walkModal02" class="modal">
+
+					<!-- Walk in / Check in modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>Walk in / Check-in info</h6>
+						<p>Walk in if you do not make any prior appointment</p>
+						<p>Check in if you have made an appointment and are ready for the appointment now</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your view Queue .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="ListQueue.html" onclick="viewTitle()">VIEW QUEUE</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="viewHelp02()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="viewModal02" class="modal">
+
+					<!-- Queue modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>View Queue info</h6>
+						<p>Your queue information will only be displayed on the current day of your appointment</p>
+						<p>Queue information would include the <b>estimated waiting time</b> and the <b>number of
+								people in front of your queue</b></p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your appointment .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="AppointmentPurpose.html" onclick="apptTitle()">APPOINTMENT</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="apptHelp02()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="apptModal02" class="modal">
+
+					<!-- Appointment modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>Appointment info</h6>
+						<p>Book an appointment for your consultation</p>
+						<p>Select your desired <b>date</b> and your desired available <b>time slot</b></p>
+						<p>You are allowed to <b>edit</b> and <b>delete</b> your appointment at this page</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your faq .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="FAQ.html" onclick="faqTitle()">FAQ</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="faqHelp02()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup-->
+				<div id="faqModal02" class="modal">
+
+					<!-- FAQ Modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>FAQ info</h6>
+						<p>This page contain some of the commonly asked questions</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<!---------------------- Insert your appointment .html over at href, just link it to singpass login page ---------------------------------------------------->
+				<a class="nav-link" href="#">SIGN OUT</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<script>
+	function walkHelp02() {
+		var modal = document.getElementById("walkModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function viewHelp02() {
+		var modal = document.getElementById("viewModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function apptHelp02() {
+		var modal = document.getElementById("apptModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function faqHelp02() {
+		var modal = document.getElementById("faqModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+
+</script>
+<!------------------------------------------------------------------------- End of my bottom menu bar ------------------------------------------------------------------------------------------------------------------>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="JS_Files/Experiment.js"></script>
+		<script src="JS_Files/notiBadgeNumber.js"></script>
+	</body>
+</html>

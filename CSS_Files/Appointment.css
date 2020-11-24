@@ -1,0 +1,152 @@
+.fullScale {
+    height: 100vh;
+    width: 100vw;
+}
+
+.fullDynamicScale {
+    height: 100%;
+    width: 100%;
+}
+
+.fullDynamicHeight {
+    height: 100%;
+}
+
+
+.HalfDynamicScale {
+    height: 50%;
+    width: 50%;
+}
+
+.HalfDynamicHeight {
+    height: 40%;
+    width: 100%;
+    margin-top: -34px;
+}
+
+.roundedBox {
+    border-color: #559fd3;
+    border-style: solid;
+    border-radius: 25px;
+    border-width: 1.5px;
+}
+
+.centeredDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}
+
+
+@media (min-width: 1200px) {
+    .title {
+        font-size: 45px;
+    } 
+}
+
+@media (max-width: 1199px) {
+    .title {
+        font-size: 35px;
+    } 
+}
+
+
+@media (max-width: 991px) {
+    .title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .title {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 575px) {
+    .title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 450px) {
+    .title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 380px) {
+    .title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 320px) {
+    .title {
+        font-size: 22px;
+    }
+}
+
+#row_AppointmentPurpose {
+    height: 50vh;
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+}
+
+.title {
+    font-weight: 500;
+}
+
+
+.AppointmentMain {
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0;
+    padding-bottom: 0;
+    
+    position: relative;
+
+}
+
+.AppointmentMain > .form-control {
+    width: 100%;
+}
+
+.zero {
+    padding: 0;
+    margin: 0;
+}
+
+#appointmentMessage {
+    height: 100px;
+}
+
+.roundedButton {
+    border-radius: 8px;
+}
+
+
+.appointmentNewButtons {
+    margin-top: 2vh;
+}
+
+
+
+#tab > .nav-item > .nav-link.active {
+    background-color: #6200EE;
+}
+
+#date, #time {
+    background-color: white;
+}
+
+.AppointmentNew {
+    
+    margin-top: 15px;
+}
+
+body {
+    padding: 0px;
+}

@@ -1,0 +1,7 @@
+/* Show it's not fixed to the top */
+body {
+  min-height: 75rem;
+
+}
+
+html, body {margin: 0; height: 100%; overflow: hidden}

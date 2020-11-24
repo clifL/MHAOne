@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">		
+        <!------------------------------------------------------------------------- Importing Files --------------------------------------------------------->
+		<link href="CSS_Files/navbar.css" rel="stylesheet">
+		<link href="CSS_Files/form-validation.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--- Title Bar --->
+		<title>QR Manual Entry</title>
+    </head>
+    <body>
+		<!------------------------------------------------------------------------- Menu bar Top ------------------------------------------------------------------->
+		<nav id="topNavigationBar" class="navbar navbar-dark bg-dark">
+			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menuNavBars"
+				aria-controls="menuNavBars" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="fa fa-bars" style="color:#596C7A"></i>
+			</button>
+	
+	
+	
+			<!---------------------- Insert your html title (all caps) in between the below p tag ---------------------------------------------------->
+			<span id="currentPage" style="color:white;">FAQ</span>
+			<a href="Notification.html" class="notification" id="badgeNumber">
+				<i class="fa fa-bell-o" onclick="onNotiClick()" style="color:#596C7A;font-size: 1.5em;" id="bell"></i>
+			</a>
+			<div class="navbar-collapse collapse" id="menuNavBars">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<!---------------------- Insert your home.html over at href --------------------------------------------------------------------------->
+						<a class="nav-link" href="index.html" onclick="homeTitle()">HOME<span
+								class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<div class="row">
+							<div class="col-10">
+								<!---------------------- Insert your walk in / check-in .html over at href ---------------------------------------------------->
+								<a class="nav-link" href="QRScanner.html" onclick="walkTitle()">WALK IN / CHECK-IN </a>
+							</div>
+							<div class="col-2">
+								<i class="fa fa-info-circle" id="walkHelp" onclick="walkHelp()" style="color:white; font-size:1.5em;"></i>
+							</div>
+						</div>
+		
+						<!-- The Modal for popup -->
+						<div id="walkModal" class="modal">
+		
+							<!-- Walk in / Check in modal content, edit if needed -->
+							<div class="modal-content">
+								<h6>Walk in / Check-in info</h6>
+								<p>Walk in if you do not make any prior appointment</p>
+								<p>Check in if you have made an appointment and are ready for the appointment now</p>
+								<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="row">
+							<div class="col-10">
+								<!---------------------- Insert your view Queue .html over at href ---------------------------------------------------->
+								<a class="nav-link" href="ListQueue.html" onclick="viewTitle()">VIEW QUEUE</a>
+							</div>
+							<div class="col-2">
+								<i class="fa fa-info-circle" onclick="viewHelp()" style="color:white; font-size:1.5em;"></i>
+							</div>
+						</div>
+		
+						<!-- The Modal for popup -->
+						<div id="viewModal" class="modal">
+		
+							<!-- Queue modal content, edit if needed -->
+							<div class="modal-content">
+								<h6>View Queue info</h6>
+								<p>Your queue information will only be displayed on the current day of your appointment</p>
+								<p>Queue information would include the <b>estimated waiting time</b> and the <b>number of
+										people in front of your queue</b></p>
+								<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="row">
+							<div class="col-10">
+								<!---------------------- Insert your appointment .html over at href ---------------------------------------------------->
+								<a class="nav-link" href="AppointmentPurpose.html" onclick="apptTitle()">APPOINTMENT</a>
+							</div>
+							<div class="col-2">
+								<i class="fa fa-info-circle" onclick="apptHelp()" style="color:white; font-size:1.5em;"></i>
+							</div>
+						</div>
+		
+						<!-- The Modal for popup -->
+						<div id="apptModal" class="modal">
+		
+							<!-- Appointment modal content, edit if needed -->
+							<div class="modal-content">
+								<h6>Appointment info</h6>
+								<p>Book an appointment for your consultation</p>
+								<p>Select your desired <b>date</b> and your desired available <b>time slot</b></p>
+								<p>You are allowed to <b>edit</b> and <b>delete</b> your appointment at this page</p>
+								<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="row">
+							<div class="col-10">
+								<!---------------------- Insert your faq .html over at href ---------------------------------------------------->
+								<a class="nav-link" href="FAQ.html" onclick="faqTitle()">FAQ</a>
+							</div>
+							<div class="col-2">
+								<i class="fa fa-info-circle" onclick="faqHelp()" style="color:white; font-size:1.5em;"></i>
+							</div>
+						</div>
+		
+						<!-- The Modal for popup-->
+						<div id="faqModal" class="modal">
+		
+							<!-- FAQ Modal content, edit if needed -->
+							<div class="modal-content">
+								<h6>FAQ info</h6>
+								<p>This page contain some of the commonly asked questions</p>
+								<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<!---------------------- Insert your appointment .html over at href, just link it to singpass login page ---------------------------------------------------->
+						<a class="nav-link" href="#">SIGN OUT</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<script>
+			function homeTitle() {
+				document.getElementById("currentPage").innerHTML = "HOME";
+			}
+			function walkTitle() {
+				document.getElementById("currentPage").innerHTML = "WALK IN / CHECK-IN";
+			}
+			function viewTitle() {
+				document.getElementById("currentPage").innerHTML = "VIEW QUEUE";
+			}
+			function apptTitle() {
+				document.getElementById("currentPage").innerHTML = "APPOINTMENT";
+			}
+			function faqTitle() {
+				document.getElementById("currentPage").innerHTML = "FAQ";
+			}
+			function notiTitle() {
+				document.getElementById("currentPage").innerHTML = "NOTIFICATION";
+			}
+			function walkHelp() {
+				var modal = document.getElementById("walkModal");
+				modal.style.display = "block";
+	
+				window.onclick = function (event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+			}
+			function viewHelp() {
+				var modal = document.getElementById("viewModal");
+				modal.style.display = "block";
+	
+				window.onclick = function (event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+			}
+			function apptHelp() {
+				var modal = document.getElementById("apptModal");
+				modal.style.display = "block";
+	
+				window.onclick = function (event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+			}
+			function faqHelp() {
+				var modal = document.getElementById("faqModal");
+				modal.style.display = "block";
+	
+				window.onclick = function (event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+			}
+	
+		</script>
+	<!------------------------------------------------------------------------- End of my top menu bar ------------------------------------------------------------------------------------------------------------------>	
+        <!-- Start of QR Manual Entry Page -->	
+        <div class="container text-left" style="max-width:762px">
+			<div class="row mt-2 mt-md-5">
+			  <div class="col text-center">
+				<h3 id="title"><u>SafeEntry Check-In</u></h3>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col">
+				  
+				<form action="Declaration.html" class="needs-validation" novalidate style="max-width:680px">
+				  <div class="form-row">
+					<label class="col-sm-3 col-form-label" id="org">Organisation</label>
+                    <div class="col-12 col-md-8">
+                        <select class="form-control" id="inputOrg" disabled>
+							<option id="autofill"></option>
+						</select>
+                    </div>
+
+					<div class="w-100"></div>
+                    <label class="col-sm-3 col-form-label" id="user_NRIC">NRIC/FIN/Passport No.</label>
+                    <div class="col-12 col-md-8">
+						<div type="input" class="form-control" id="inputNRIC" disabled style="background-color: #e9ecef;"></div>
+					</div>
+					  
+					<div class="w-100"></div>
+                    
+                    <label class="col-sm-3 col-form-label" id="MobileNumber">Mobile No. <span style="opacity: 0.8;">(Optional)</span></label>
+                    <div class="col-12 col-md-8">
+                        <input type="number" class="form-control" id="inputMobile" placeholder="+(65) 1234-5678">
+					</div>
+                    
+					<div class="wrapper container form-row">
+					  <small class="text-muted col-sm-12 no-padding-left" style="padding-right:0">                    
+						  <div class="text-left"><p class="mt-3 mb-8 mr-auto ml-0">By checking in, you declare that:
+                              <br>- You have not had close contact with a confirmed COVID-19 case in the past 14 days *#</br>
+                              - You are not currently under a Quarantine Order or Stay-Home Notice *
+                              <br>- You do not have any fever or flu-like symptoms *</br>
+                              - You agree to the terms and consent to the collection/use of your information for COVID-19 contact tracing
+                              <br></br>
+                              * not applicable if you are seeking treatment at a medical facility
+                              <br># not applicable to COVID-19 frontline workers</br></p>
+                          </div>
+					  </small>
+				  </div>
+					<div class="w-100"></div>
+				  </div>
+				  <div class="form-row mt-2 justify-content-center">
+					<div class="form-group col-8">
+					  <button class="btn btn-success btn-md btn-block active">Check-in</button>
+					</div>
+				  </div>
+				</form>
+
+			   </div>
+			</div>
+		</div>
+
+		<!--- Local Session Storage to obtain Organisation value in QR Scanner-->
+		<script>
+			document.getElementById("autofill").innerHTML=localStorage.getItem("orgResult");
+		</script>
+
+		<!------------------------------------------------------------------------- Menu bar Bottom ----------------------------------------------------------------->
+<nav id="bottomNavigationBar" class="navbar navbar-dark bg-dark">
+	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menuNavBars"
+		aria-controls="menuNavBars" aria-expanded="false" aria-label="Toggle navigation">
+		<i class="fa fa-bars" style="color:#596C7A"></i>
+	</button>
+	<!---------------------- Insert your html title (all caps) in between the below p tag ---------------------------------------------------->
+	<span id="currentPage" style="color:white;">QR MANUAL ENTRY</span>
+	<a href="Notification.html" class="notification" id="badgeNumber">
+		<i class="fa fa-bell-o" onclick="onNotiClick()" style="color:#596C7A;font-size: 1.5em;" id="bell"></i>
+	</a>
+	<div class="navbar-collapse collapse" id="menuNavBars">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<!---------------------- Insert your home.html over at href --------------------------------------------------------------------------->
+				<a class="nav-link" href="index.html" onclick="homeTitle()">HOME<span
+						class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your walk in / check-in .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="QRScanner.html" onclick="walkTitle()">WALK IN / CHECK-IN </a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" id="walkHelp" onclick="walkHelp()"
+							style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="walkModal02" class="modal">
+
+					<!-- Walk in / Check in modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>Walk in / Check-in info</h6>
+						<p>Walk in if you do not make any prior appointment</p>
+						<p>Check in if you have made an appointment and are ready for the appointment now</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your view Queue .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="ListQueue.html" onclick="viewTitle()">VIEW QUEUE</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="viewHelp()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="viewModal02" class="modal">
+
+					<!-- Queue modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>View Queue info</h6>
+						<p>Your queue information will only be displayed on the current day of your appointment</p>
+						<p>Queue information would include the <b>estimated waiting time</b> and the <b>number of
+								people in front of your queue</b></p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your appointment .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="AppointmentPurpose.html" onclick="apptTitle()">APPOINTMENT</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="apptHelp()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup -->
+				<div id="apptModal02" class="modal">
+
+					<!-- Appointment modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>Appointment info</h6>
+						<p>Book an appointment for your consultation</p>
+						<p>Select your desired <b>date</b> and your desired available <b>time slot</b></p>
+						<p>You are allowed to <b>edit</b> and <b>delete</b> your appointment at this page</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<div class="row">
+					<div class="col-10">
+						<!---------------------- Insert your faq .html over at href ---------------------------------------------------->
+						<a class="nav-link" href="FAQ.html" onclick="faqTitle()">FAQ</a>
+					</div>
+					<div class="col-2">
+						<i class="fa fa-info-circle" onclick="faqHelp()" style="color:white; font-size:1.5em;"></i>
+					</div>
+				</div>
+
+				<!-- The Modal for popup-->
+				<div id="faqModal02" class="modal">
+
+					<!-- FAQ Modal content, edit if needed -->
+					<div class="modal-content">
+						<h6>FAQ info</h6>
+						<p>This page contain some of the commonly asked questions</p>
+						<p style="color:red;font-size:10px">Press outside the popup to exit</p>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item">
+				<!---------------------- Insert your appointment .html over at href, just link it to singpass login page ---------------------------------------------------->
+				<a class="nav-link" href="#">SIGN OUT</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<script>
+	function walkHelp() {
+		var modal = document.getElementById("walkModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function viewHelp() {
+		var modal = document.getElementById("viewModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function apptHelp() {
+		var modal = document.getElementById("apptModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	function faqHelp() {
+		var modal = document.getElementById("faqModal02");
+		modal.style.display = "block";
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+
+</script>
+<!------------------------------------------------------------------------- End of my bottom menu bar ------------------------------------------------------------------------------------------------------------------>
+		  
+        <!------------------------------------------------------------------------- Placed at the end of the document so the pages load faster -------------------------------------------------------------->
+		<script src="JS_Files/Experiment.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="JS_Files/form-validation.js"></script>
+		<script src="JS_Files/restdb.js"></script>
+		<script src="JS_Files/notiBadgeNumber.js"></script>
+		<script src="https://mhadb-b067.restdb.io/rest/_jsapi.js"></script>
+		<div id="UMS_TOOLTIP" style="position: absolute; cursor: pointer; z-index: 2147483647; background: transparent; top: -100000px; left: -100000px;"></div>
+    </body>
+</html>
