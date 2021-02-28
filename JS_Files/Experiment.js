@@ -1,4 +1,4 @@
-var version = 1 //0 - Top Menu Show, Bottom Menu Hide, 1 - Top Menu Hide, Bottom Menu Show
+var version = 0 //0 - Top Menu Show, Bottom Menu Hide, 1 - Top Menu Hide, Bottom Menu Show
 
 function ToggleVersion() {
     sessionStorage.removeItem("Version")
